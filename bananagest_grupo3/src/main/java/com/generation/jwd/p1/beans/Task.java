@@ -13,13 +13,13 @@ public class Task implements Serializable {
 	private String description;
 	private String date_start;
 	private String state;
-	private String hours;
-	private String id_user;
+	private int hours;
+	private int id_user;
 	
 	public Task() {};
 	
-	public Task(int id, String name, String description, String date_start,String state, String hours, 
-				 String id_user) {
+	public Task(int id, String name, String description, String date_start,String state, int hours, 
+				 int id_user) {
 		
 		this.id = id;
 		this.name = name;
@@ -70,19 +70,19 @@ public class Task implements Serializable {
 		this.state = state;
 	}
 
-	public String getHours() {
+	public int getHours() {
 		return hours;
 	}
 
-	public void setHours(String hours) {
+	public void setHours(int hours) {
 		this.hours = hours;
 	}
 
-	public String getId_user() {
+	public int getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(String id_user) {
+	public void setId_user(int id_user) {
 		this.id_user = id_user;
 	}
 	
