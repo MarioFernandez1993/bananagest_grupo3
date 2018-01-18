@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,25 +15,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import com.generation.jwd.p1.beans.LoginBean;
-import com.generation.jwd.p1.beans.Task;
-import com.generation.jwd.p1.beans.User;
-
-
-
 @WebServlet("/login")
-
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-
-    public LoginServlet() {    
+       
+    public LoginServlet() {
+        super();
     }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.getRequestDispatcher("login.jsp").forward(request, response);
+	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		if(email.isEmpty() || password.isEmpty()) {
+			
+			//Si el formulario está vacío, manda un mensaje de error
+			request.setAttribute("error", "Usuario y/o contraseña están vacíos. Por favor, introduzca datos correctos");
+			request.getRequestDispatcher("/login").forward(request, response);
+			
+		} 
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -45,54 +49,48 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 		
-		Connection connection = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		Context initContext = null;
-		Context envContext = null;
-		DataSource datasource = null;
-		
-		try {
+		Connection conn;
+		ResultSet rs;
+		PreparedStatement stmt;
+		Context initContext;
+		Context envContext;
+		DataSource ds;
+		int id_user = 0;			
+			
+		try {	
 			
 			initContext = new InitialContext();
 			envContext = (Context)initContext.lookup("java:/comp/env");
-			datasource = (DataSource)envContext.lookup("jdbc/banana_gest_new");
-			connection = (Connection) datasource.getConnection();
-			
-		} catch(NamingException e) {
-			
-			System.out.println("Naming Exception: " + e.getMessage()W);		
-		}
-		
-		try {
-			
-			connection = datasource.getConnection();
-			stmt = (PreparedStatement)connection.prepareStatement("SELECT * FROM user WHERE id_user = ?");
-//			int user_id = 1;//hardcodeado
-//			stmt.setInt(1,user_id );
-			rs = stmt.executeQuery();		
-				 			
-			while(rs.next()) {
+			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
+			conn = (Connection) ds.getConnection();
+			stmt = (PreparedStatement)conn.prepareStatement("SELECT id FROM user WHERE email = ? AND password = ?");				
+			stmt.setString(1, email);
+			stmt.setString(2, password);			
+			rs = stmt.executeQuery();
 				
+			if (rs.next()) {				
+			
+				id_user = rs.getInt("id");					
 			}			
 			
 			rs.close();
 			stmt.close();
-			connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (NamingException e) {
-				e.printStackTrace();
-			}	
+			conn.close();			
 			
-			
+		} catch(Exception e) {
+			System.out.println("Excepción SQL: " + e.getMessage());				
 		}
-	
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//		doGet(request, response);
-//	}
-
-}
+		
+		if (id_user != 0) {		
+			
+			HttpSession session = (HttpSession)request.getSession();
+			session.setAttribute("id_user",id_user);		
+			request.getRequestDispatcher("/homeuser").forward(request, response);
+			
+		} else {
+			
+			request.getRequestDispatcher("login.jsp").forward(request, response);request.setAttribute("error", "Usuario y/o contraseña están vacíos. Por favor, introduzca datos correctos");
+		
+		}				
 	}
 }
