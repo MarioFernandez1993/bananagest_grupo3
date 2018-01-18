@@ -35,7 +35,7 @@
                                 Nombre
                             </th>
                             <th class="contenttable">
-                                <textarea name="task.name" required="true" rows="15" cols="60"></textarea>
+                                <textarea name="name" required="true" rows="15" cols="60"></textarea>
                             </th>
                         </tr>  
                         <tr>
@@ -43,16 +43,16 @@
                                 Descripción
                             </th>
                             <th class="contenttable">
-                                <textarea name="task.description" required="true" rows="15" cols="60"
+                                <textarea name="description" required="true" rows="15" cols="60"
                                  ></textarea>
                             </th>
                         </tr>
-                        <tr>
+                         <tr>
                             <th class="namecontent">
                                 Fecha de inicio
                             </th>
                             <th class="contenttable">
-                                <input id="dateform" type="date" name="task.date_start" required="true"/> 
+                                <input id="dateform" type="date" name="dateStart" required="true"/>               
                             </th>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@
                                 Estado
                             </th>
                             <th class="contenttable">
-                                <select  class="selectionbuton" name="task.state" required="true">
+                                <select  class="selectionbuton" name="state" required="true">
                                     <option value="">- Elige una opción -</option>
                                     <option value="1">Terminada</option>
                                     <option value="2">En curso</option>
@@ -73,23 +73,24 @@
                                 Horas asignadas
                             </th>
                             <th class="contenttable">
-                                <textarea name="task.hours" required="true" rows="15" cols="60"
+                                <textarea name="hours" required="true" rows="15" cols="60"
                                  ></textarea>
                             </th>
                         </tr>
+                        
                         <tr>
                             <th class="namecontent">
                                 Usuario asignado
                             </th>
                             <th class="contenttable">
-                                <select  class="selectionbuton" name="task.id_user" required="true">
+                                <select  class="selectionbuton" name="id_user" required="true">
                                     <option>- Asignar a -</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                 </select>
                             </th>
-                        </tr>
+                        </tr>                 
                     </table>
                 </p>
                 <div id="boton">
