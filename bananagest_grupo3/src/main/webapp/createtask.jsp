@@ -65,8 +65,8 @@
                             <td class="namecontent">Usuario asignado</td>
                             <td class="contenttable">
                                 <select  class="selectionbuton" name="id_user" required="true">
-                                    <c:forEach items="${userList}" var="user">
-	                                    <option value="${user.id}">${user.id}</option>
+                                    <c:forEach items="${userList}" var="user_id">
+	                                    <option value="${user_id}">${user_id}</option>
                                     </c:forEach>
                                 </select>
                             </td>

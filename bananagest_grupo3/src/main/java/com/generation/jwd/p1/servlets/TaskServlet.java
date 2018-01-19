@@ -41,41 +41,44 @@ public class TaskServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//First, we connect with the data base
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Where is your MySQL JDBC Driver?");
+			e.printStackTrace();
+			return;
+		}
+		System.out.println("sdfsfd");
+		Context initContext = null;
+		Context envContext = null;
+		ArrayList<Integer> users = new ArrayList<Integer>();
+		
 		try {
 			
 			initContext = new InitialContext();
 			envContext = (Context)initContext.lookup("java:/comp/env");
 			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
 			conn = (Connection) ds.getConnection();
-			stmt = (PreparedStatement)conn.prepareStatement("SELECT id FROM user");	
+			stmt = (PreparedStatement)conn.prepareStatement("SELECT id FROM user order by id asc");	
 			rs = stmt.executeQuery();
-			
-//			HttpSession session = request.getSession();
 			
 			while(rs.next()) {
 				
-				//Create a list for the id users
-				List <Integer> users = new ArrayList <Integer>();
-				users.add(rs.getInt("id"));
-//				session.getAttribute("id");		
+				users.add((Integer)rs.getInt("id"));
+				System.out.println(rs.getInt("id"));
 			}		
 			
-			//Close
 			rs.close();
 			stmt.close();
 			conn.close();
 			
-		} catch(NamingException e) {
-			
-			System.out.println("Exception Naming: " + e.getMessage());
-			
-		} catch (SQLException e) {
-		
+		} catch (SQLException e) {		
+			e.printStackTrace();
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 		
-		//Forward
+		request.setAttribute("userList", users);
 		request.getRequestDispatcher("createtask.jsp").forward(request, response);
 	}
 	
@@ -92,7 +95,7 @@ public class TaskServlet extends HttpServlet {
 		 //Take the data from jsp
 		 task.setName(request.getParameter("name"));
 	     task.setDescription(request.getParameter("description"));
-	     task.setDateStart(dateStart);
+	     task.setDate_start(dateStart);
 	     task.setState(request.getParameter("state"));
 	     task.setHours(hours);
 	     task.setId_user(idUser);
@@ -113,7 +116,7 @@ public class TaskServlet extends HttpServlet {
 				//Add the data
 				stmt.setInt(1, task.getId());
 				stmt.setString(2, task.getName());
-				stmt.setTimestamp(3, task.getDateStart());
+				stmt.setTimestamp(3, task.getDate_start());
 				stmt.setString(4, task.getDescription());
 				stmt.setString(5, task.getState());
 				stmt.setInt(6, task.getHours());
