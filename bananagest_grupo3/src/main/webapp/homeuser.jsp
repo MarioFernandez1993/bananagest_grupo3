@@ -17,12 +17,12 @@
 			</header>
 			<main>
 				<sidebar class="botones">
-						<a href="projects.jsp">
+						<a href="createproject">
 							<input class="crear" type="submit" name="boton" value="Crear proyecto" style="width:40%  ">
 						</a>
 						<a href="#">
 						</a>
-						<a href="createtask.jsp">
+						<a href="createtask">
 							<input class="crear" type="submit" name="boton" value="Crear tarea" style="width:40%">
 						</a>
 						<a href="createtask.jsp">		
