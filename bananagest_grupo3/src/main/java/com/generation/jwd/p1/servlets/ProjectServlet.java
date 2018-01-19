@@ -91,7 +91,11 @@ public class ProjectServlet extends HttpServlet {
 			stmt.setString(6, id_user);
 			stmt.executeUpdate();
 				
-							
+			conn.commit();
+			
+			stmt.close();
+			conn.close();
+			
 		}catch(SQLException e) {
             
             System.out.println("Exception SQL: " + e.getMessage());
