@@ -16,11 +16,22 @@
 	            <div class="head"><h4><a href="login.jsp">Logout</a></h4></div>    
 			</header>
 			<main>
+				<sidebar class="botones">
+						<a href="">
+							<input class="crear" type="submit" name="boton" value="Crear proyecto" style="width:40%  ">
+						</a>
+						<a href="#">
+						</a>
+						<a href="createtask.jsp">
+							<input class="crear" type="submit" name="boton" value="Crear tarea" style="width:40%">
+						</a>
+						<a href="createtask.jsp">		
+						</a>
+				</sidebar>
 				<section class="tareas">
 					<nav>
 						<h2>Tus tareas</h2>
-						<img src="images/search.png"/>
-						<input type="text" name="navegador" placeholder="Search"/>
+						
 						<table id="tabla" border="3" cellspacing="0" cellpadding="2" bordercolor="#666633"/>
 							<tr>
 								<td>
@@ -44,8 +55,12 @@
 								<td>
 									<div>Usuario</div>
 								</td>
+								<td>
+									<div></div>
+								</td>
 							</tr>
 							<c:forEach items="${taskList}" var="task">
+							
 							    <tr>
 							    	<td>${task.id}</td>
 							    	<td>${task.name}</td>
@@ -54,39 +69,14 @@
 									<td>${task.state}</td>
 									<td>${task.hours}</td>
 									<td>${task.id_user}</td>
+									<td><a href="createtask.jsp">Editar
+								</a></td>
 							    </tr>
+							
 							</c:forEach>
 						</table>
 					</nav>	
 				</section>
-				<sidebar class="botones">
-					<p>
-						<a href="">
-							<input type="submit" name="boton" value="Crear proyecto" style="width:60%">
-						</a>
-						<a href="#">
-							<img src="images/add.png" style="width:3%"/>
-						</a>
-					</p>
-					<p>
-						<a href="createtask.jsp">
-							<input type="submit" name="boton" value="Crear tarea" style="width:60%">
-						</a>
-						<a href="createtask.jsp">
-							<img src="images/add.png" style="width:3%"/>
-						</a>
-					</p>
-					<p>
-						<a href="#">
-							<input type="submit" name="boton" value="Editar tarea" style="width:60%">
-						</a>
-					</p>		
-					<p>
-						<a href="#">
-							<input type="submit" name="boton" value="Lista proyectos" style="width:40%">
-						</a>
-					</p>
-				</sidebar>
 			</main>
 			<br/>
 			<footer>
