@@ -10,20 +10,20 @@ public class Task implements Serializable {
 	private int id;
 	private String name;
 	private String description;
-	private Timestamp dateStart;
+	private Timestamp date_start;
 	private String state;
 	private int hours;
 	private int id_user;
 	
 	public Task() {};
 	
-	public Task(int id, String name, String description, Timestamp dateStart,String state, int hours, 
+	public Task(int id, String name, String description, Timestamp date_start,String state, int hours, 
 				 int id_user) {
 		
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.dateStart = dateStart;
+		this.date_start = date_start;
 		this.state = state;
 		this.hours = hours;
 		this.id_user = id_user;
@@ -53,12 +53,12 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Timestamp getDateStart() {
-		return dateStart;
+	public Timestamp getDate_start() {
+		return date_start;
 	}
 
-	public void setDateStart(Timestamp dateStart) {
-		this.dateStart = dateStart;
+	public void setDate_start(Timestamp date_start) {
+		this.date_start = date_start;
 	}
 
 	public String getState() {

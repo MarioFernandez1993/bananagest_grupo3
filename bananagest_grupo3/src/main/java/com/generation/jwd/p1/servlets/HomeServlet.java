@@ -67,7 +67,7 @@ public class HomeServlet extends HttpServlet {
 				myTask = new Task();
 				myTask.setId(rs.getInt(1));
 				myTask.setName(rs.getString(2));
-				myTask.setDate_start(rs.getString(3));
+				myTask.setDate_start(rs.getTimestamp(3));
 				myTask.setDescription(rs.getString(4));
 				myTask.setState(rs.getString(5));				
 				myTask.setHours(rs.getInt(6));
