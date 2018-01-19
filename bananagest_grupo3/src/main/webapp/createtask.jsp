@@ -16,10 +16,10 @@
             <div class="head"><h1>Banana GEST</h1><a href="homeuser.jsp"><img src="images/bananas_medio.png"/></a></div>
             <div class="head"><h4><a href="login.jsp">Logout</a></h4></div>
         </header>
-            <h2>Registro de nuevo proyecto</h2>
+            <h2>Registro de nueva tarea</h2>
             <hr>
         <main>
-            <form metdod="post" action="createproyect" id = "proyecttask">
+            <form method="post" action="createtask" id ="createtask">
                 <p>
                     <table id="basic">
                         <tr class="contenttable">
@@ -57,7 +57,7 @@
                         <tr>
                             <td class="namecontent">Horas asignadas</td>
                             <td class="contenttable">
-                                 <input type="number" id="hours" name="hours"/>
+                                 <input type="number" id="hours" name="hours" min="0"/>
                             </td>
                         </tr>
                         
@@ -74,8 +74,7 @@
                     </table>
                 </p>
                 <div id="boton">
-                    <button onclick = "validar()" style="widtd:200px; height:50px;">Crear Proyecto</button>
-                    <button onclick = "cancelar()" name="cancel_task" value="Cancelar tarea" style="widtd:200px; height:50px;">Cancelar Tarea</button>
+                    <button  style="widtd:200px; height:50px;">Crear Tarea</button>
                 </div>
             </form>
         </main>
@@ -83,14 +82,14 @@
             <span>Banana GEST - Todos los derechos reservados</span>
         </footer>
         <script>
-            function validar(){
+           /*  function validar(){
                 var inpObj = document.getElementById("formtask");
                 if (inpObj.checkValidity() == false) {
                     alert("Task has not created")
                 } else{ 
                     alert("Task has been created")
                 }            
-            }
+            } */
         </script>
     </body>
     </html>
