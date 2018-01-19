@@ -23,21 +23,13 @@
                     <table id="basic">
                         <tr class="contenttable">
                             <th class="namecontent">
-                                ID
-                            </th>
-                            <th class="contenttable">
-                                <input style="background-color:#F5BFB2;" type="text" placeholder="Nombre de la tarea" required="true"
-                                name="task.id" autofocus/>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="namecontent">
                                 Nombre
                             </th>
                             <th class="contenttable">
-                                <textarea name="name" required="true" rows="15" cols="60"></textarea>
+                                <input style="background-color:#F5BFB2;" type="text" placeholder="Nombre de la tarea" required="true"
+                                name="name.id" autofocus/>
                             </th>
-                        </tr>  
+                        </tr>
                         <tr>
                             <th class="namecontent">
                                 Descripción
@@ -73,8 +65,17 @@
                                 Horas asignadas
                             </th>
                             <th class="contenttable">
-                                <textarea name="hours" required="true" rows="15" cols="60"
-                                 ></textarea>
+                                 <select  class="selectionbuton" name="id_user" required="true">
+                                    <option>- Horas -</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                </select>
                             </th>
                         </tr>
                         
