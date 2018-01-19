@@ -9,11 +9,12 @@ public class Task  {
 	private String state;
 	private int hours;
 	private int id_user;
+	private int id_project;
 	
 	public Task() {};
 	
 	public Task(int id, String name, String description, String date_start,String state, int hours, 
-				 int id_user) {
+				 int id_user,int id_project) {
 		
 		this.id = id;
 		this.name = name;
@@ -22,6 +23,7 @@ public class Task  {
 		this.state = state;
 		this.hours = hours;
 		this.id_user = id_user;
+		this.id_project = id_project;
 	}
 
 	public int getId() {
@@ -76,8 +78,15 @@ public class Task  {
 		return id_user;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setId_user(int id_project) {
+		this.id_project = id_project;
+	}
+	public int getId_project() {
+		return id_project;
+	}
+
+	public void setId_project(int id_project) {
+		this.id_project = id_project;
 	}
 }
 
