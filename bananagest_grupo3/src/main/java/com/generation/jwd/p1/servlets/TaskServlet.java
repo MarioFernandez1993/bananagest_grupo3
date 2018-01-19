@@ -48,7 +48,7 @@ public class TaskServlet extends HttpServlet {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("sdfsfd");
+		
 		Context initContext = null;
 		Context envContext = null;
 		ArrayList<Integer> users = new ArrayList<Integer>();
@@ -65,7 +65,6 @@ public class TaskServlet extends HttpServlet {
 			while(rs.next()) {
 				
 				users.add((Integer)rs.getInt("id"));
-				System.out.println(rs.getInt("id"));
 			}		
 			
 			rs.close();
@@ -83,68 +82,46 @@ public class TaskServlet extends HttpServlet {
 	}
 	
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 //First, we take the data from jsp
+		 
 		 Task task = new Task();
 		 
-		 //Transform the data from string to the proper format
-		 int hours = Integer.parseInt(request.getParameter("hours"));
-		 int idUser = Integer.parseInt(request.getParameter("id_user"));
-		 Timestamp dateStart= Timestamp.valueOf(request.getParameter("dateStart"));
-
-		 //Take the data from jsp
 		 task.setName(request.getParameter("name"));
 	     task.setDescription(request.getParameter("description"));
-	     task.setDate_start(dateStart);
+	     task.setDate_start(request.getParameter("date_start"));
 	     task.setState(request.getParameter("state"));
-	     task.setHours(hours);
-	     task.setId_user(idUser);
+	     task.setHours(Integer.parseInt(request.getParameter("hours")));
+	     task.setId_user(Integer.parseInt(request.getParameter("id_user")));
 	  
+	     String q = "INSERT INTO task"
+					+ "(id, name, date_start, description, state, hours, id_user)"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+	     
 	     try {
 		
-	    	 	conn.setAutoCommit(false);
-	    	 	
-	    	   //Now, we connect with the database
-				initContext = new InitialContext();
-				envContext = (Context)initContext.lookup("java:/comp/env");
-				ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
-				conn = (Connection) ds.getConnection();
-				stmt = (PreparedStatement)conn.prepareStatement("INSERT INTO task"
-						+ " (id, name, date_start, description, state, hours, id_user)"
-						+ "VALUES(?, ?, ?, ?, ?, ?, ?)");	
+			initContext = new InitialContext();
+			envContext = (Context)initContext.lookup("java:/comp/env");
+			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
+			conn = (Connection) ds.getConnection();			
+			stmt = (PreparedStatement)conn.prepareStatement(q);				
+			stmt.setInt(1, task.getId());
+			stmt.setString(2, task.getName());
+			stmt.setString(3, task.getDate_start());
+			stmt.setString(4, task.getDescription());
+			stmt.setString(5, task.getState());
+			stmt.setInt(6, task.getHours());
+			stmt.setInt(7, task.getId_user());
+			stmt.executeUpdate();
+			stmt.close();
+			conn.close();
 				
-				//Add the data
-				stmt.setInt(1, task.getId());
-				stmt.setString(2, task.getName());
-				stmt.setTimestamp(3, task.getDate_start());
-				stmt.setString(4, task.getDescription());
-				stmt.setString(5, task.getState());
-				stmt.setInt(6, task.getHours());
-				stmt.setInt(7, task.getId_user());
-				
-				stmt.executeUpdate();
-				
-				//Now, we show the data for console
-				
-				conn.commit();
-				
-				//Close
-				stmt.close();
-				conn.close();
-				
-	     } catch(SQLException e) {
-	    	 
-	    	 System.out.println("Exception SQL: " + e.getMessage());
-	    	 try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	    	 
-	     } catch (NamingException e) {
-			
+	     } catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}finally{
+	    	 
+	    }
+	     response.sendRedirect("homeuser");
+//	     request.getRequestDispatcher("homeuser");	
 	 }
 }
