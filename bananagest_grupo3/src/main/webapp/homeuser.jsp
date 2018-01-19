@@ -12,12 +12,12 @@
 			<header>
 				<div class="head"><img src="images/profile.png" width="55" height="55"><h3>Bienvenido/a ${User}</h3>
 	            <a href="#">Editar perfil</a></div>
-	            <div class="head"><h1>Banana GEST</h1><a href="homeuser.jsp"><img src="images/bananas_medio.png"/></a></div>
+	            <div class="head"><h1>Banana GEST</h1><img src="images/bananas_medio.png"/></div>
 	            <div class="head"><h4><a href="login.jsp">Logout</a></h4></div>    
 			</header>
 			<main>
 				<sidebar class="botones">
-						<a href="">
+						<a href="projects.jsp">
 							<input class="crear" type="submit" name="boton" value="Crear proyecto" style="width:40%  ">
 						</a>
 						<a href="#">

@@ -6,7 +6,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
             <title>Crear Proyecto | Banana GEST</title>
-            <link rel="stylesheet" type="text/css" href="css/createtask.css">
+            <link rel="stylesheet" type="text/css" href="css/projects.css">
         </head>
         <body>
         <header>
@@ -23,7 +23,7 @@
                     <table id="newproject">
                         <tr class="contenttable">
                             <th class="namecontent">
-                                ID
+                                Nombre
                             </th>
                             <th class="contenttable">
                                 <input style="background-color:#F5BFB2;" type="text" placeholder="Nombre del proyecto" required="true"
@@ -32,12 +32,13 @@
                         </tr>
                         <tr>
                             <th class="namecontent">
-                                Nombre
+                                Descripción
                             </th>
                             <th class="contenttable">
-                                <textarea name="project.name" required="true" rows="15" cols="60"></textarea>
+                                <textarea name="project.description" required="true" rows="15" cols="60"
+                                 ></textarea>
                             </th>
-                        </tr> 
+                        </tr>
                         <tr>
                             <th class="namecontent">
                                 Fecha de inicio
@@ -52,15 +53,6 @@
                             </th>
                             <th class="contenttable">
                                 <input id="projectform" type="date" name="projects.date_end" required="true"/> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="namecontent">
-                                Descripción
-                            </th>
-                            <th class="contenttable">
-                                <textarea name="project.description" required="true" rows="15" cols="60"
-                                 ></textarea>
                             </th>
                         </tr>
                         <tr>
