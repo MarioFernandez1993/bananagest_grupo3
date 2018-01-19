@@ -1,23 +1,18 @@
 package com.generation.jwd.p1.beans;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+public class Task  {
 
-public class Task implements Serializable {
-	
-
-	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String description;
-	private Timestamp date_start;
+	private String date_start;
 	private String state;
 	private int hours;
 	private int id_user;
 	
 	public Task() {};
 	
-	public Task(int id, String name, String description, Timestamp date_start,String state, int hours, 
+	public Task(int id, String name, String description, String date_start,String state, int hours, 
 				 int id_user) {
 		
 		this.id = id;
@@ -53,11 +48,11 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Timestamp getDate_start() {
+	public String getDate_start() {
 		return date_start;
 	}
 
-	public void setDate_start(Timestamp date_start) {
+	public void setDate_start(String date_start) {
 		this.date_start = date_start;
 	}
 
