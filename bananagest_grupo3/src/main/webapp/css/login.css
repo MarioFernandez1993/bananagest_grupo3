@@ -15,6 +15,15 @@ header{
 	border-radius: 10px;
 }
 
+.error {
+	
+	background-color: #DCDCDC;
+	color : red;
+	text-size : 1.5em;
+	margin-left : 20%;
+	margin-right : 20%;
+}
+
 .row{
 	text-align: center;
 }

@@ -89,7 +89,8 @@ public class LoginServlet extends HttpServlet {
 			
 		} else {
 			
-			request.getRequestDispatcher("login.jsp").forward(request, response);request.setAttribute("error", "Usuario y/o contrase�a est�n vac�os. Por favor, introduzca datos correctos");
+			request.setAttribute("error", "Usuario y/o contraseña son incorrectos. Por favor, vuelva a introducir los datos");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		
 		}				
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -22,7 +23,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<img id= "bananas" src="images/bananas_grande.png"/>
 					<form action="login" method="post" id="formulario">
-						<p id="error"></p>
+						<p class="error">${error}</p>
 						<div class="intro_user">
 							<img class="alinear" src="images/user.png"/>
 							<input type="text" name="email" placeholder="Email" required="true" autofocus/>
@@ -35,7 +36,7 @@
 						<a class="password" href="#">He olvidado mi contraseña</a>
 						</div>	
 						<div class="intro_user">
-							<button onclick="validar()">Log In</button>
+							<button>Log In</button>
 						</div>
 					</form>										
 					<div class="intro_user">
@@ -61,21 +62,5 @@
 				<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Banana GEST - Todos los derechos reservados</span>
 			</div>
 		</footer>
-		<script>
-			function validar(){
-				var inpObj = document.getElementById("formulario");
-				if (inpObj.checkValidity() == false) {
-					document.getElementById("error").innerHTML = "Usuario o contraseña incorrectos. Por favor, vuelve a introducirlos";
-					document.getElementById("error").style.backgroundColor = "gainsboro";
-					document.getElementById("error").style.color = "red";
-					document.getElementById("error").style.textSize = "1.5em";
-					document.getElementById("error").style.borderRadius = "5px";
-					document.getElementById("error").style.borderStyle = "solid";
-					document.getElementById("error").style.borderColor = "goldenrod";
-					document.getElementById("error").style.marginLeft= "20%";
-					document.getElementById("error").style.marginRight= "20%";
-				}
-			}
-		</script>
 	</body>
 </html>
