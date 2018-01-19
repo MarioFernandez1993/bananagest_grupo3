@@ -84,8 +84,7 @@ public class HomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}	
 		request.setAttribute("taskList",taskList);
-		request.getRequestDispatcher("homeuser.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("homeuser.jsp").forward(request, response);		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
