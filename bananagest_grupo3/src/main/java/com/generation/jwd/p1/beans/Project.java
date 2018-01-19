@@ -1,20 +1,17 @@
 package com.generation.jwd.p1.beans;
 
-import java.io.Serializable;
+public class Project {
 
-public class Project implements Serializable{
-
-	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String description;
 	private String date_start;
 	private String date_end;
-	private String id_user;
+	private int id_user;
 	
 	public Project() {};
 	
-	public Project(int id, String name, String description, String date_start,String date_end, String id_user) {
+	public Project(int id, String name, String description, String date_start,String date_end, int id_user) {
 		
 		this.id = id;
 		this.name = name;
@@ -64,14 +61,13 @@ public class Project implements Serializable{
 		this.date_end = date_end;
 	}
 
-	public String getId_user() {
+	public int getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(String id_user) {
+	public void setId_user(int id_user) {
 		this.id_user = id_user;
 	}
-	
 }
 
 		

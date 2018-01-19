@@ -38,26 +38,26 @@ public class ProjectServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String id = "0";
+		String id = "ID";
 		int id_int = Integer.parseInt(id);
 		
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		
 		Timestamp ts = Timestamp.valueOf(request.getParameter("date_start"));
-		String date_start = request.getParameter("date_start");
-		ts = Timestamp.valueOf(date_start);
+//		String date_start = request.getParameter("date_start");
+//		ts = Timestamp.valueOf(date_start);
 		
 		Timestamp ts2 = Timestamp.valueOf(request.getParameter("date_end"));
-		String date_end = request.getParameter("date_end");
-		ts2 = Timestamp.valueOf(date_end);
+//		String date_end = request.getParameter("date_end");
+//		ts2 = Timestamp.valueOf(date_end);
 		
 		String id_user = request.getParameter("id_user");
 		
 		if(name.isEmpty() || description.isEmpty() || date_start.isEmpty() || date_end.isEmpty() || id_user.isEmpty()) {
 			
-			//Si el formulario está vacío, manda un mensaje de error
-			request.setAttribute("error", "Hay campos que están vacíos. Por favor, introduzca los datos correctos");
+			//Si el formulario estï¿½ vacï¿½o, manda un mensaje de error
+			request.setAttribute("error", "Hay campos que estï¿½n vacï¿½os. Por favor, introduzca los datos correctos");
 			request.getRequestDispatcher("/project").forward(request, response);
 			
 		} 
