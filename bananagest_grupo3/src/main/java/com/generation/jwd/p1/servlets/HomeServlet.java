@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.generation.jwd.p1.beans.Task;
@@ -50,6 +51,8 @@ public class HomeServlet extends HttpServlet {
 		DataSource datasource = null;
 		ArrayList<Task> taskList = new ArrayList<Task>();
 		Task myTask ;
+		HttpSession session = (HttpSession)request.getSession();
+		int user_id = (Integer)session.getAttribute("id_user");
 		
 		try {
 			initContext = new InitialContext();
@@ -57,7 +60,6 @@ public class HomeServlet extends HttpServlet {
 			datasource = (DataSource)envContext.lookup("jdbc/banana_gest_new");
 			connection = (Connection) datasource.getConnection();
 			stmt = (PreparedStatement)connection.prepareStatement("SELECT * FROM task WHERE id_user = ?");
-			int user_id = 1;//hardcodeado
 			stmt.setInt(1,user_id );
 			rs = stmt.executeQuery();		
 			 			
@@ -82,8 +84,7 @@ public class HomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}	
 		request.setAttribute("taskList",taskList);
-		request.getRequestDispatcher("homeuser.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("homeuser.jsp").forward(request, response);		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
