@@ -35,8 +35,8 @@ public class LoginServlet extends HttpServlet {
 		
 		if(email.isEmpty() || password.isEmpty()) {
 			
-			//Si el formulario está vacío, manda un mensaje de error
-			request.setAttribute("error", "Usuario y/o contraseña están vacíos. Por favor, introduzca datos correctos");
+			//Si el formulario estï¿½ vacï¿½o, manda un mensaje de error
+			request.setAttribute("error", "Usuario y/o contraseï¿½a estï¿½n vacï¿½os. Por favor, introduzca datos correctos");
 			request.getRequestDispatcher("/login").forward(request, response);
 			
 		} 
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 			envContext = (Context)initContext.lookup("java:/comp/env");
 			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
 			conn = (Connection) ds.getConnection();
-			stmt = (PreparedStatement)conn.prepareStatement("SELECT id FROM user WHERE email = ? AND password = ?");				
+			stmt = (PreparedStatement)conn.prepareStatement("SELECT * FROM user WHERE email = ? AND password = ?");				
 			stmt.setString(1, email);
 			stmt.setString(2, password);			
 			rs = stmt.executeQuery();
@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 			conn.close();			
 			
 		} catch(Exception e) {
-			System.out.println("Excepción SQL: " + e.getMessage());				
+			System.out.println("Excepcion SQL: " + e.getMessage());				
 		}
 		
 		if (id_user != 0) {		
@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 			
 		} else {
 			
-			request.getRequestDispatcher("login.jsp").forward(request, response);request.setAttribute("error", "Usuario y/o contraseña están vacíos. Por favor, introduzca datos correctos");
+			request.getRequestDispatcher("login.jsp").forward(request, response);request.setAttribute("error", "Usuario y/o contraseï¿½a estï¿½n vacï¿½os. Por favor, introduzca datos correctos");
 		
 		}				
 	}
