@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.generation.jwd.p1.beans.Task;
+import com.generation.jwd.p1.beans.User;
 
 
 
@@ -53,6 +54,7 @@ public class HomeServlet extends HttpServlet {
 		Task myTask ;
 		HttpSession session = (HttpSession)request.getSession();
 		int user_id = (Integer)session.getAttribute("id_user");
+
 		
 		try {
 			initContext = new InitialContext();
