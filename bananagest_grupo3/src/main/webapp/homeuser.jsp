@@ -64,7 +64,7 @@
 									<td>${task.description}</td>
 									<td>${task.state}</td>
 									<td>${task.hours}</td>
-									<td><a href="createtask.jsp"> <button class = "edit"> Editar</button></a></td>
+									<td><a href="createtask"> <button class = "edit"> Editar</button></a></td>
 							    </tr>
 							</c:forEach>
 						</table>
