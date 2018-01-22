@@ -14,7 +14,7 @@
             <div class="head"><img src="images/profile.png" widtd="55" height="55"><h3>Bienvenido/a (User)</h3>
             <a href="#">Editar perfil</a></div>
             <div class="head"><h1>Banana GEST</h1><a href="homeuser.jsp"><img src="images/bananas_medio.png"/></a></div>
-            <div class="head"><h4><a href="login.jsp">Logout</a></h4></div>
+            <div class="head"><h4><a href="LogoutServlet">Logout</a></h4></div>
         </header>
             <h2>Registro de nuevo proyecto</h2>
             <hr>
@@ -52,8 +52,8 @@
                             <td class="namecontent">Usuario asignado</td>
                             <td class="contenttable">
                                 <select  class="selectionbuton" id="id_user" name="id_user" required="true">
-                                    <c:forEach items="${userList}" var="user_id">
-	                                    <option value="${user_id}">${user_id}</option>
+                                    <c:forEach items="${userList}" var="user_name">
+	                                    <option value="${user_name}">${user_name}</option>
                                     </c:forEach>
                                 </select>
                             </td>
