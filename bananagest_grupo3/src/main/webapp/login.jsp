@@ -24,6 +24,7 @@
 					<img id= "bananas" src="images/bananas_grande.png"/>
 					<form action="login" method="post" id="formulario">
 						<p class="error">${error}</p>
+						<p class="disconnect">${disconnect}</p>
 						<div class="intro_user">
 							<img class="alinear" src="images/user.png"/>
 							<input type="text" name="email" placeholder="Email" required="true" autofocus/>
