@@ -18,7 +18,7 @@
 				<div class="register col-xs-4 col-sm-4 col-md-4 col-lg-4"><h4><a href="#">Registrarse</a></h4></div>
 			</div>		
 		</header>
-		<main class="container-fluid" >
+		<main class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<img id= "bananas" src="images/bananas_grande.png"/>
