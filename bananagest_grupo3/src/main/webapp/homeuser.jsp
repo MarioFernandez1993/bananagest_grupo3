@@ -56,8 +56,7 @@
 									<div></div>
 								</td>
 							</tr>
-							<c:forEach items="${taskList}" var="task">
-							
+							<c:forEach items="${taskList}" var="task">	
 							    <tr>
 							    	<td>${task.id}</td>
 							    	<td>${task.name}</td>
@@ -65,10 +64,8 @@
 									<td>${task.description}</td>
 									<td>${task.state}</td>
 									<td>${task.hours}</td>
-									<td><a href="createtask.jsp"> <button> Editar
-								</a></button></td>
+									<td><a href="createtask.jsp"> <button class = "edit"> Editar</button></a></td>
 							    </tr>
-							
 							</c:forEach>
 						</table>
 					</nav>	

@@ -88,7 +88,7 @@ public class ProjectServlet extends HttpServlet {
 		project.setDescription(request.getParameter("description"));
 		project.setDate_start(request.getParameter("date_start"));
 		project.setDate_end(request.getParameter("date_end"));
-		project.setId_user(request.getParameter("id_user"));
+		project.setId_user(Integer.parseInt(request.getParameter("id_user")));
 				
 		String q = "INSERT INTO project"
 				+ "(id, name, date_start, date_end, description, id_user)"
@@ -107,7 +107,7 @@ public class ProjectServlet extends HttpServlet {
 			stmt.setString(3, project.getDate_start());
 			stmt.setString(4, project.getDate_end());
 			stmt.setString(5, project.getDescription());
-			stmt.setString(6, project.getId_user());
+			stmt.setInt(6, project.getId_user());
 			stmt.executeUpdate();
 				
 			stmt.close();

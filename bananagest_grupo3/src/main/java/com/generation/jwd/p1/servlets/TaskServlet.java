@@ -33,7 +33,6 @@ public class TaskServlet extends HttpServlet {
 	private Connection conn;
 	private ResultSet rs;
 	private PreparedStatement stmt;
-	private PreparedStatement stmp;
 	private Context initContext;
 	private Context envContext;
 	private DataSource ds;	

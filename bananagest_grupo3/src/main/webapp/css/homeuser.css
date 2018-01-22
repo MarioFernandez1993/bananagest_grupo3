@@ -21,15 +21,21 @@ section{
 
 .tareas {
 	border-style: solid;
-	display: inline-block;	/**/
+	display: inline-block;	
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom:10px;
 	margin-left: 10px;
 	margin-right: 10px;	
 	text-align: center;
-	top: 0;			/**/
+	top: 0;		
 }
+
+.edit {
+	padding : 0px;
+	text-align: right;
+}
+
 .crear{
 	text-align: center;
 	height:40px;
@@ -44,14 +50,13 @@ section{
 }
 
 .botones {
-	float: right;	/**/
+	float: right;
 	width: 100%;	
-	
 	margin-top: 20px;
 	margin-bottom:10px;
 	margin-left: 10px;
 	margin-left: 10px;
-	text-align: top;	/**/
+	text-align: top;
 }
 
 a{
