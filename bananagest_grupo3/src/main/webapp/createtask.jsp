@@ -60,17 +60,26 @@
                                  <input type="number" id="hours" name="hours" min="0"/>
                             </td>
                         </tr>
-                        
                         <tr>
                             <td class="namecontent">Usuario asignado</td>
                             <td class="contenttable">
                                 <select  class="selectionbuton" id="id_user" name="id_user" required="true">
-                                    <c:forEach items="${userList}" var="user_id">
-	                                    <option value="${user_id}">${user_id}</option>
+                                    <c:forEach items="${userList}" var="user">
+	                                    <option value="${user}">${user}</option>
                                     </c:forEach>
                                 </select>
                             </td>
-                        </tr>                 
+                        </tr>
+                         <tr>
+                            <td class="namecontent">Proyecto asignado</td>
+                            <td class="contenttable">
+                                <select  class="selectionbuton" id="id_project" name="id_project" required="true">
+                                    <c:forEach items="${projectList}" var="project">
+	                                    <option value="${project}">${project}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>                                  
                     </table>
                 </p>
                 <div id="boton">
