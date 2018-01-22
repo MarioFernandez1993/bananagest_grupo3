@@ -16,9 +16,16 @@ header{
 }
 
 .error {
-	
 	background-color: #DCDCDC;
 	color : red;
+	text-size : 1.5em;
+	margin-left : 20%;
+	margin-right : 20%;
+}
+
+.disconnect {
+	background-color: #DCDCDC;
+	color : green;
 	text-size : 1.5em;
 	margin-left : 20%;
 	margin-right : 20%;
