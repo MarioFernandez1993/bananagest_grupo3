@@ -65,7 +65,7 @@
 									<td>${task.description}</td>
 									<td>${task.state}</td>
 									<td>${task.hours}</td>
-									<td><a href="createtask.jsp">Editar
+									<td><a href="createtask.jsp"><button class="editar" >Editar</button>
 								</a></td>
 							    </tr>
 							
