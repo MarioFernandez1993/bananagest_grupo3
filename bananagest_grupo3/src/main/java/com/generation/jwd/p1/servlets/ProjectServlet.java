@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -20,47 +23,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 
-@WebServlet("/project")
+@WebServlet("/createproject")
 public class ProjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private Connection conn;
+	private ResultSet rs;
+	private PreparedStatement stmt;
+	private Context initContext;
+	private Context envContext;
+	private DataSource ds;	
  
     public ProjectServlet() {
         super();
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("projects.jsp").forward(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String id = "ID";
-		int id_int = Integer.parseInt(id);
-		
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
-		Timestamp ts = Timestamp.valueOf(request.getParameter("date_start"));
-//		String date_start = request.getParameter("date_start");
-//		ts = Timestamp.valueOf(date_start);
-		
-		Timestamp ts2 = Timestamp.valueOf(request.getParameter("date_end"));
-//		String date_end = request.getParameter("date_end");
-//		ts2 = Timestamp.valueOf(date_end);
-		
-		String id_user = request.getParameter("id_user");
-		
-		if(name.isEmpty() || description.isEmpty() || date_start.isEmpty() || date_end.isEmpty() || id_user.isEmpty()) {
-			
-			//Si el formulario est� vac�o, manda un mensaje de error
-			request.setAttribute("error", "Hay campos que est�n vac�os. Por favor, introduzca los datos correctos");
-			request.getRequestDispatcher("/project").forward(request, response);
-			
-		} 
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -69,41 +47,78 @@ public class ProjectServlet extends HttpServlet {
 			e.printStackTrace();
 			return;
 		}
+	
+		Context initContext = null;
+		Context envContext = null;
+		Map <Integer, String> users = new HashMap <Integer, String>();
+	
+		try {
 		
-		Connection conn;
-		PreparedStatement stmt;
-		Context initContext;
-		Context envContext;
-		DataSource ds;
-		
-		try {	
-			
 			initContext = new InitialContext();
 			envContext = (Context)initContext.lookup("java:/comp/env");
 			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
 			conn = (Connection) ds.getConnection();
-			stmt = (PreparedStatement)conn.prepareStatement("INSERT INTO proyect WHERE id = ?, name = ?, date_start = ?, date_end = ?, description = ?, id_user = ?");				
-			stmt.setInt(1, id_int);
-			stmt.setString(2, name);
-			stmt.setTimestamp(3, ts);
-			stmt.setTimestamp(4, ts2);
-			stmt.setString(5, description);
-			stmt.setString(6, id_user);
-			stmt.executeUpdate();
-				
-			conn.commit();
+			stmt = (PreparedStatement)conn.prepareStatement("SELECT id, name FROM user order by name asc");	
+			rs = stmt.executeQuery();
+		
+			while(rs.next()) {
 			
+				users.put(rs.getInt("id"), rs.getString("name"));
+			}		
+		
+			rs.close();
 			stmt.close();
 			conn.close();
-			
-		}catch(SQLException e) {
-            
-            System.out.println("Exception SQL: " + e.getMessage());
-            
-        } catch (NamingException e) {
-           
-           e.printStackTrace();
-       }
+		
+		} catch (SQLException e) {		
+			e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	
+		request.setAttribute("userList", users.values());
+		request.getRequestDispatcher("createproject.jsp").forward(request, response);
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		Project project = new Project();
+		
+		project.setName(request.getParameter("name"));
+		project.setDescription(request.getParameter("description"));
+		project.setDate_start(request.getParameter("date_start"));
+		project.setDate_end(request.getParameter("date_end"));
+		project.setId_user(request.getParameter("id_user"));
+				
+		String q = "INSERT INTO project"
+				+ "(id, name, date_start, date_end, description, id_user)"
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		
+		try {
+				
+			initContext = new InitialContext();
+			envContext = (Context)initContext.lookup("java:/comp/env");
+			ds = (DataSource)envContext.lookup("jdbc/banana_gest_new");
+			conn = (Connection) ds.getConnection();			
+				
+			stmt = (PreparedStatement)conn.prepareStatement(q);				
+			stmt.setInt(1, project.getId());
+			stmt.setString(2, project.getName());
+			stmt.setString(3, project.getDate_start());
+			stmt.setString(4, project.getDate_end());
+			stmt.setString(5, project.getDescription());
+			stmt.setString(6, project.getId_user());
+			stmt.executeUpdate();
+				
+			stmt.close();
+			conn.close();
+					
+		    } catch (SQLException e) {
+				e.printStackTrace();
+			} catch (NamingException e) {
+				e.printStackTrace();
+			} finally {
+		    }
+		     response.sendRedirect("homeuser");
+	}
 }

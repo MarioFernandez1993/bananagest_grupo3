@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-            <div class="head"><img src="images/profile.png" widtd="55" height="55"><h3>Bienvenido/a (User)</h3>
+            <div class="head"><img src="images/profile.png" widtd="55" height="55"><h3>Bienvenido/a ${id_user}</h3>
             <a href="#">Editar perfil</a></div>
             <div class="head"><h1>Banana GEST</h1><a href="homeuser.jsp"><img src="images/bananas_medio.png"/></a></div>
             <div class="head"><h4><a href="LogoutServlet">Logout</a></h4></div>
@@ -60,17 +60,26 @@
                                  <input type="number" id="hours" name="hours" min="0"/>
                             </td>
                         </tr>
-                        
                         <tr>
                             <td class="namecontent">Usuario asignado</td>
                             <td class="contenttable">
                                 <select  class="selectionbuton" id="id_user" name="id_user" required="true">
-                                    <c:forEach items="${userList}" var="user_id">
-	                                    <option value="${user_id}">${user_id}</option>
+                                    <c:forEach items="${userList}" var="user">
+	                                    <option value="${user}">${user}</option>
                                     </c:forEach>
                                 </select>
                             </td>
-                        </tr>                 
+                        </tr>
+                         <tr>
+                            <td class="namecontent">Proyecto asignado</td>
+                            <td class="contenttable">
+                                <select  class="selectionbuton" id="id_project" name="id_project" required="true">
+                                    <c:forEach items="${projectList}" var="project">
+	                                    <option value="${project}">${project}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>                                  
                     </table>
                 </p>
                 <div id="boton">
