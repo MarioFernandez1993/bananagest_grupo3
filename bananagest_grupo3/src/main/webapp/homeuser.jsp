@@ -53,9 +53,6 @@
 									<div>Horas</div>
 								</td>
 								<td>
-									<div>Usuario</div>
-								</td>
-								<td>
 									<div></div>
 								</td>
 							</tr>
@@ -68,7 +65,6 @@
 									<td>${task.description}</td>
 									<td>${task.state}</td>
 									<td>${task.hours}</td>
-									<td>${task.id_user}</td>
 									<td><a href="createtask.jsp">Editar
 								</a></td>
 							    </tr>
