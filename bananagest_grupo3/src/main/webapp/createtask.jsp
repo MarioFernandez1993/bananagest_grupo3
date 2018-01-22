@@ -39,7 +39,7 @@
                          <tr>
                             <td class="namecontent">Fecha de inicio</td>
                             <td class="contenttable">
-                                <input id="date_start" type="date"" name="date_start" required="true"/>               
+                                <input id="date_start" type="date" name="date_start" required="true"/>               
                             </td>
                         </tr>
                         <tr>
